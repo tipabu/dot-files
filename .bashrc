@@ -4,7 +4,9 @@ export HISTCONTROL=ignoreboth
 # Python start-up script
 export PYTHONSTARTUP=${HOME}/.python/startup.py
 
-export EDITOR=nano
+if [ -n "$(type -p nano)" ]; then
+	export EDITOR=nano
+fi
 
 # Simplify listing hidden files&dirs
 alias l.="ls -pd .*"
@@ -25,8 +27,8 @@ done
 # Pull in other definitions.
 # We want this after enabling completion, so we can add completion support
 #-------------------
-if [ -d ${HOME}/.bashrc.d ]; then
-	for f in ${HOME}/.bashrc.d/*.sh ; do
-		. $f
+if [ -d "${HOME}/.bashrc.d" ]; then
+	for f in "${HOME}/.bashrc.d"/*.sh ; do
+		. "$f"
 	done
 fi
