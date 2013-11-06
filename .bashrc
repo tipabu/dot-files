@@ -4,11 +4,8 @@
 _cmd_avail() { [ -n "$(type -p $1)" ]; }
 
 #-------------------
-# Environment variables
+# Global environment variables
 #-------------------
-
-# Make history a little more sane
-export HISTCONTROL=ignoreboth
 
 # Python start-up script
 export PYTHONSTARTUP=${HOME}/.python/startup.py
@@ -16,6 +13,16 @@ export PYTHONSTARTUP=${HOME}/.python/startup.py
 if _cmd_avail 'nano' ; then
 	export EDITOR='nano'
 fi
+
+#-------------------
+# Local environment variables
+#-------------------
+
+# Make history a little more sane
+HISTCONTROL=ignoreboth
+
+# Prefer the local version of things (like Homebrew's nano on OS X)
+PATH=/usr/local/bin:${PATH}
 
 #-------------------
 # Aliases
@@ -43,7 +50,9 @@ done
 
 #-------------------
 # Pull in other definitions.
-# We want this after enabling completion, so we can add completion support
+#
+# We want this after enabling completion, so
+# each can add its own completion support
 #-------------------
 if [ -d "${HOME}/.bashrc.d" ]; then
 	for f in "${HOME}/.bashrc.d"/*.sh ; do

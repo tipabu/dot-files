@@ -1,3 +1,5 @@
+set nowrap
+
 include "~/.nano/c.nanorc"
 include "~/.nano/css.nanorc"
 include "~/.nano/html.nanorc"
