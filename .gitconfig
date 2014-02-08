@@ -1,3 +1,5 @@
 [user]
 	name = Tim Burke
 	email = tim.burke@gmail.com
+[push]
+	default = simple

@@ -28,8 +28,9 @@ PATH=/usr/local/bin:${PATH}
 # Aliases
 #-------------------
 
-# Simplify listing hidden files&dirs
+# Simplify listing hidden files & dirs
 alias l.="ls -pd .*"
+alias ls="ls -FG"
 
 # We never want vi if vim is available
 if _cmd_avail 'vim' ; then

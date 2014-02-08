@@ -1,0 +1,12 @@
+## Here is an example for Javascript.
+##
+syntax "javascript" "\.js$"
+color green "\<(var|new|this|undefined|Math|Object|Array|String|Boolean|Number|RegExp|Date)\>"
+color red "\<(break|case|catch|continue|default|do|else|finally|for|if|return|switch|throw|try|while)\>"
+color cyan "\<(constructor|prototype|function|parseInt|parseFloat|valueOf|toString|decodeURI|decodeURIComponent|encodeURI|encodeURIComponent|escape|unescape|eval|isFinite|isNaN)\>"
+color cyan "/[^/]*/[gi]{0,2}"
+color red ""[^"]*""
+color yellow "\<(true|false|null)\>"
+color blue "//.*"
+color blue start="/\*" end="\*/"
+color ,green "[[:space:]]+$"
