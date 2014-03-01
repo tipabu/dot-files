@@ -23,6 +23,10 @@ HISTCONTROL=ignoreboth
 
 # Prefer the local version of things (like Homebrew's nano on OS X)
 PATH=/usr/local/bin:${PATH}
+# Prefer user-local versions even more
+if [ -d "${HOME}/bin" ]; then
+	PATH=${HOME}/bin:${PATH}
+fi
 
 #-------------------
 # Aliases
