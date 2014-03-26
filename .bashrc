@@ -64,3 +64,46 @@ if [ -d "${HOME}/.bashrc.d" ]; then
 		. "$f"
 	done
 fi
+
+#-------------------
+# Prompt string
+#-------------------
+__git_branch() {
+	if git branch >/dev/null 2>&1; then
+		# Ignore the dot-file repo, as that isn't something we usually care about
+		if [ "`git rev-parse --show-toplevel 2>/dev/null`" == "${HOME}" ]; then
+			return
+		fi
+		branch=`git branch | grep '^\*' | cut -c 3-`
+		if git status --porcelain 2>&1 | grep . >/dev/null 2>&1; then
+			echo -ne " \e[31m[${branch}*]"
+		else
+			echo -ne " \e[32m[${branch}]"
+		fi
+	fi
+}
+__svn_path() {
+	wc_root=`pwd`
+	# For svn 1.7+, go up until we see a .svn directory
+	while [ ! -d "$wc_root/.svn" -a "$wc_root" != "/" ]; do
+		wc_root=`dirname "$wc_root"`
+	done
+	# For svn 1.6-, go up until the parent doesn't have a .svn directory
+	while [ -d "`basename "$wc_root"`/.svn" ]; do
+		wc_root=`dirname "$wc_root"`
+	done
+
+	if svn info >/dev/null 2>&1; then
+		repo_len=`svn info "$wc_root" 2>/dev/null | grep "^Repository Root:" | cut -c 18- | wc -c`
+		svn_path=`svn info "$wc_root" | grep "^URL:" | cut -c 7- | cut -c ${repo_len}-`
+		if [ `svn status "$wc_root" 2>/dev/null | wc -l` -eq 0 ]; then
+			echo " \e[32m[${svn_path:-/}]"
+		else
+			echo " \e[31m[${svn_path:-/}*]"
+		fi
+	fi
+}
+__make_prompt() {
+	PS1="\n\e[36m[\D{%H:%M:%S}] \u@\h : \w$(__git_branch)$(__svn_path)\e[0m\n$ "
+}
+PROMPT_COMMAND=__make_prompt
