@@ -69,6 +69,7 @@ fi
 # Prompt string
 #-------------------
 __git_branch() {
+	if ! _cmd_avail git; then return; fi
 	if git branch >/dev/null 2>&1; then
 		# Ignore the dot-file repo, as that isn't something we usually care about
 		if [ "`git rev-parse --show-toplevel 2>/dev/null`" == "${HOME}" ]; then
@@ -83,6 +84,7 @@ __git_branch() {
 	fi
 }
 __svn_path() {
+	if ! _cmd_avail svn; then return; fi
 	wc_root=`pwd`
 	# For svn 1.7+, go up until we see a .svn directory
 	while [ ! -d "$wc_root/.svn" -a "$wc_root" != "/" ]; do
