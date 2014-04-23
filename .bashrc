@@ -83,17 +83,17 @@ __git_branch() {
 	fi
 }
 __svn_path() {
-	wc_root=`pwd`
-	# For svn 1.7+, go up until we see a .svn directory
-	while [ ! -d "$wc_root/.svn" -a "$wc_root" != "/" ]; do
-		wc_root=`dirname "$wc_root"`
-	done
-	# For svn 1.6-, go up until the parent doesn't have a .svn directory
-	while [ -d "`basename "$wc_root"`/.svn" ]; do
-		wc_root=`dirname "$wc_root"`
-	done
-
 	if svn info >/dev/null 2>&1; then
+		wc_root=`pwd`
+		# For svn 1.7+, go up until we see a .svn directory
+		while [ ! -d "$wc_root/.svn" -a "$wc_root" != "/" ]; do
+			wc_root=`dirname "$wc_root"`
+		done
+		# For svn 1.6-, go up until the parent doesn't have a .svn directory
+		while [ -d "`basename "$wc_root"`/.svn" ]; do
+			wc_root=`dirname "$wc_root"`
+		done
+
 		repo_len=`svn info "$wc_root" 2>/dev/null | grep "^Repository Root:" | cut -c 18- | wc -c`
 		svn_path=`svn info "$wc_root" | grep "^URL:" | cut -c 7- | cut -c ${repo_len}-`
 		if [ `svn status "$wc_root" 2>/dev/null | wc -l` -eq 0 ]; then
@@ -103,7 +103,19 @@ __svn_path() {
 		fi
 	fi
 }
+__abbr_path() {
+	pwd | sed -e "s@^${HOME}@~@" | python -c "import sys
+import itertools
+l=sys.stdin.readline().split('/')
+a=list(itertools.chain.from_iterable([l[0:3], ['...'], l[-2:]]))
+print '/'.join(l if len(l) <= len(a) else a)"
+}
 __make_prompt() {
-	PS1="\n\e[36m[\D{%H:%M:%S}] \u@\h : \w$(__git_branch)$(__svn_path)\e[0m\n$ "
+	st=$?
+	if [ "$st" == "0" ]; then
+		PS1="\n\e[36m[\D{%H:%M:%S}] \u@\h : $(__abbr_path)$(__git_branch)$(__svn_path)\e[0m\n\$ "
+	else
+		PS1="\n\e[31m[$st] \e[36m[\D{%H:%M:%S}] \u@\h : $(__abbr_path)$(__git_branch)$(__svn_path)\e[0m\n\$ "
+	fi
 }
 PROMPT_COMMAND=__make_prompt
