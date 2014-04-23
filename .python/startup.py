@@ -1,4 +1,5 @@
 #Code  UUID = '9301d536-860d-11de-81c8-0023dfaa9e40'
+import os
 import sys
 try:
         import readline
