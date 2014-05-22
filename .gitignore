@@ -1,0 +1,12 @@
+*
+!.*
+
+.DS*
+._.DS*
+.*~
+.*_history
+
+.lesshst
+.dbshell
+.mongorc.js
+.CFUserTextEncoding
