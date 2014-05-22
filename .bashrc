@@ -10,8 +10,8 @@ _cmd_avail() { [ -n "$(type -p $1)" ]; }
 # Python start-up script
 export PYTHONSTARTUP=${HOME}/.python/startup.py
 
-if _cmd_avail 'nano' ; then
-	export EDITOR='nano'
+if _cmd_avail 'vim' ; then
+	export EDITOR='vim'
 fi
 
 #-------------------
@@ -39,6 +39,11 @@ alias ls="ls -FG"
 # We never want vi if vim is available
 if _cmd_avail 'vim' ; then
 	alias vi='vim'
+fi
+
+if _cmd_avail 'vagrant' ; then
+	alias v='vagrant'
+	alias vssh='vagrant ssh'
 fi
 
 #-------------------
@@ -121,3 +126,9 @@ __make_prompt() {
 	fi
 }
 PROMPT_COMMAND=__make_prompt
+
+# Local config
+
+if [ -f "${HOME}/.bashrc.local" ]; then
+	. "${HOME}/.bashrc.local"
+fi
