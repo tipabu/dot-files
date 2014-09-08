@@ -41,6 +41,10 @@ if _cmd_avail 'vim' ; then
 	alias vi='vim'
 fi
 
+if _cmd_avail 'hexdump' ; then
+	alias hd="hexdump -C"
+fi
+
 if _cmd_avail 'vagrant' ; then
 	alias v='vagrant'
 	alias vssh='vagrant ssh'
@@ -89,6 +93,7 @@ __git_branch() {
 	fi
 }
 __svn_path() {
+	return  # Disabled; don't do much in SVN these days
 	if ! _cmd_avail svn; then return; fi
 	if svn info >/dev/null 2>&1; then
 		wc_root=`pwd`
