@@ -1,2 +1,3 @@
 *.ini	diff=ini
 *.conf	diff=ini
+*.conf-sample	diff=ini
