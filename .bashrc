@@ -47,6 +47,7 @@ fi
 
 if _cmd_avail 'vagrant' ; then
 	alias v='vagrant'
+	alias vs='vagrant status | grep -v "not created"'
 	alias vssh='vagrant ssh'
 fi
 
