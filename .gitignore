@@ -1,5 +1,10 @@
 *
 !.*
+!.bashrc.d/*
+!.config/git/*
+!.homebrew/*
+!.nano/*
+!.python/*
 
 .DS*
 ._.DS*
