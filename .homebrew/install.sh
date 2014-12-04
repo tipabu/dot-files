@@ -1,5 +1,5 @@
 #!/bin/sh
-set -x
+set -x -e
 # Mac only
 [ "$(uname -s)" == "Darwin" ] || exit 1
 
@@ -10,8 +10,11 @@ if [ -n "$(type -p 'brew')" ]; then
 	brew doctor
 else
 	# Install
-	ruby -e "$(curl -fsSL https://raw.github.com/Homebrew/homebrew/go/install)"
+	ruby -e "$(curl --fail --silent --show-error --location https://raw.github.com/Homebrew/homebrew/go/install)"
 fi
 
 # Install desired packages
-cat "${HOME}/.homebrew/list" | xargs brew install
+brew leaves > "${HOME}/.homebrew/leaves"
+diff "${HOME}/.homebrew/leaves" "${HOME}/.homebrew/list" | \
+  sed '/^> / !d;s/^> //' | xargs brew install
+brew cleanup
