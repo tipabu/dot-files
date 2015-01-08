@@ -1,6 +1,7 @@
 *
 !.*
 !.bashrc.d/*
+!.config/*
 !.config/git/*
 !.homebrew/*
 !.nano/*

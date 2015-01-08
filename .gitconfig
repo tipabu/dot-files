@@ -13,7 +13,7 @@
 	lc = !sh -c 'git ll origin/HEAD..${1:HEAD}' -
 	cv = !git-cherry-view
 	bv = branch --color -vvv
-	br = branch --contains origin~250 -a --no-merged
+	br = branch --contains origin~250 -a --no-merged origin
 
 [color]
 	ui = auto
@@ -43,4 +43,4 @@
 	default = simple
 
 [diff "ini"]
-        xfuncname = "^(\\[.*\\])"
+	xfuncname = "^(\\[.*\\])"
