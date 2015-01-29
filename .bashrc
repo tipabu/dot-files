@@ -118,9 +118,8 @@ __svn_path() {
 }
 __abbr_path() {
 	pwd | sed -e "s@^${HOME}@~@" | python -c "import sys
-import itertools
-l=sys.stdin.readline().split('/')
-a=list(itertools.chain.from_iterable([l[0:3], ['...'], l[-2:]]))
+l = sys.stdin.readline().split('/')
+a = l[0:3] + ['...'] + l[-2:]
 print '/'.join(l if len(l) <= len(a) else a)"
 }
 __make_prompt() {
