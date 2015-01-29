@@ -11,6 +11,9 @@
 [alias]
 	ll = log --pretty='format:%C(yellow)%h%Creset %s%C(green bold)%d%Creset %C(black bold)(by %an, %ar)%Creset'
 	lc = !sh -c 'git ll origin/HEAD..${1:HEAD}' -
+	lcr = !sh -c 'git ll ${1:HEAD}..origin/HEAD' -
+	lu = !sh -c 'git ll @{u}..${1:HEAD}' -
+	lur = !sh -c 'git ll ${1:HEAD}..@{u}' -
 	cv = !git-cherry-view
 	bv = branch --color -vvv
 	br = branch --contains origin~250 -a --no-merged origin
