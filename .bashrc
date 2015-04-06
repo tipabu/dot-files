@@ -41,6 +41,10 @@ if _cmd_avail 'vim' ; then
 	alias vi='vim'
 fi
 
+if _cmd_avail 'gitk' ; then
+	alias gbv='gitk --branches --remotes --simplify-by-decoration'
+fi
+
 if _cmd_avail 'hexdump' ; then
 	alias hd="hexdump -C"
 fi

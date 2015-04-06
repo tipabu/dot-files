@@ -12,6 +12,7 @@
 .*~
 .*_history
 
+.viminfo
 .lesshst
 .dbshell
 .mongorc.js
