@@ -124,7 +124,7 @@ __abbr_path() {
 	pwd | sed -e "s@^${HOME}@~@" | python -c "import sys
 l = sys.stdin.readline().split('/')
 a = l[0:3] + ['...'] + l[-2:]
-print '/'.join(l if len(l) <= len(a) else a)"
+print('/'.join(l if len(l) <= len(a) else a))"
 }
 __make_prompt() {
 	st=$?

@@ -8,6 +8,9 @@
 [mergetool "kdiff3"]
 	path = /Applications/kdiff3.app/Contents/MacOS/kdiff3
 
+[difftool "kdiff3"]
+	path = /Applications/kdiff3.app/Contents/MacOS/kdiff3
+
 [alias]
 	ll = log --pretty='format:%C(yellow)%h%Creset %s%C(green bold)%d%Creset %C(black bold)(by %an, %ar)%Creset'
 	lc = !sh -c 'git ll origin/HEAD..${1:HEAD}' -
