@@ -82,6 +82,9 @@ fi
 #-------------------
 # Prompt string
 #-------------------
+__virtual_env() {
+	[ -z "${VIRTUAL_ENV}" ] || echo -n "($(basename ${VIRTUAL_ENV})) "
+}
 __git_branch() {
 	if ! _cmd_avail git; then return; fi
 	if git branch >/dev/null 2>&1; then
@@ -126,13 +129,12 @@ l = sys.stdin.readline().split('/')
 a = l[0:3] + ['...'] + l[-2:]
 print('/'.join(l if len(l) <= len(a) else a))"
 }
+__err_code() {
+	[ "$1" -eq 0 ] || echo -n "\e[31m[$1] "
+}
 __make_prompt() {
 	st=$?
-	if [ "$st" == "0" ]; then
-		PS1="\n\e[36m[\D{%H:%M:%S}] \u@\h : $(__abbr_path)$(__git_branch)$(__svn_path)\e[0m\n\$ "
-	else
-		PS1="\n\e[31m[$st] \e[36m[\D{%H:%M:%S}] \u@\h : $(__abbr_path)$(__git_branch)$(__svn_path)\e[0m\n\$ "
-	fi
+	PS1="\n$(__err_code $st)\e[36m[\D{%H:%M:%S}] \u@\h : $(__abbr_path)$(__git_branch)$(__svn_path)\e[0m\n$(__virtual_env)\$ "
 }
 PROMPT_COMMAND=__make_prompt
 
