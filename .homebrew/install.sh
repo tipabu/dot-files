@@ -10,7 +10,7 @@ if [ -n "$(type -p 'brew')" ]; then
 	brew doctor
 else
 	# Install
-	ruby -e "$(curl --fail --silent --show-error --location https://raw.github.com/Homebrew/homebrew/go/install)"
+	ruby -e "$(curl --fail --silent --show-error --location https://raw.github.com/Homebrew/install/master/install)"
 fi
 
 # Install desired packages
