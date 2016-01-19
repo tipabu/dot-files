@@ -37,6 +37,7 @@ Desktop.ini
 *.out
 
 *.py[cdo]
+*.egg-info/
 *.so
 
 *.class
