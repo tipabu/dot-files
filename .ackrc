@@ -1,2 +1,3 @@
 --ignore-dir=Library
 --ignore-dir=.npm
+--ignore-dir=.tox
