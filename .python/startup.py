@@ -1,6 +1,7 @@
 import json  # noqa
 import os  # noqa
-import sys  # noqa
+import pprint
+import sys
 
 readline = None
 try:
@@ -38,3 +39,9 @@ if readline:
         readline.parse_and_bind("bind ^I rl_complete")
     else:
         readline.parse_and_bind("tab: complete")
+
+def displayhook(value):
+    if value is not None:
+        pprint.pprint(value)
+
+sys.displayhook = displayhook
