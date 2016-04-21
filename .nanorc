@@ -1,6 +1,7 @@
 set nowrap
 
 include "~/.nano/c.nanorc"
+include "~/.nano/conf.nanorc"
 include "~/.nano/css.nanorc"
 include "~/.nano/html.nanorc"
 include "~/.nano/java.nanorc"
