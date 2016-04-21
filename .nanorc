@@ -1,4 +1,8 @@
-set nowrap
+set tabsize 4
+set tabstospaces
+set fill 79
+set const
+set morespace
 
 include "~/.nano/c.nanorc"
 include "~/.nano/conf.nanorc"
