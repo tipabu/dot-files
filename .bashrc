@@ -36,6 +36,14 @@ fi
 alias l.="ls -pd .*"
 alias ls="ls -FG"
 
+if _cmd_avail 'netstat' && [ "$(uname -s)" != "Darwin" ]; then
+	if _cmd_avail 'watch'; then
+		alias ns="watch -n 0.1 netstat -tup"
+	else
+		alias ns="netstat -tupc"
+	fi
+fi
+
 # We never want vi if vim is available
 if _cmd_avail 'vim' ; then
 	alias vi='vim'
