@@ -10,11 +10,11 @@ gnu-tar
 gradle
 maven
 mongodb
-nano
+homebrew/dupes/nano
 nmap
 node
 scala
-screen
+homebrew/dupes/screen
 source-highlight
 unrar
 watch
