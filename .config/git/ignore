@@ -4,6 +4,7 @@
 *.orig
 *.swp
 *.tmp
+.idea/
 
 .DS_Store
 .AppleDouble

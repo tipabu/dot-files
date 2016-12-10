@@ -5,6 +5,9 @@
 [merge]
 	tool = kdiff3
 
+[diff]
+	compactionHeuristic = true
+
 [mergetool "kdiff3"]
 	path = /Applications/kdiff3.app/Contents/MacOS/kdiff3
 
@@ -20,6 +23,8 @@
 	cv = !git-cherry-view
 	bv = branch --color -vvv
 	br = branch --contains origin~250 -a --no-merged origin
+	v = tag --points-at HEAD
+    st = status --short --branch
 
 [color]
 	ui = auto
@@ -50,3 +55,16 @@
 
 [diff "ini"]
 	xfuncname = "^(\\[.*\\])"
+
+[fetch]
+    prune = true
+
+[pull]
+    rebase = true
+
+[rebase]
+    autoSquash = true
+    autoStash = true
+
+[stash]
+    showPatch = true
