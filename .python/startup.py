@@ -1,3 +1,4 @@
+import hashlib
 import json  # noqa
 import os  # noqa
 import pprint
@@ -41,7 +42,15 @@ if readline:
         readline.parse_and_bind("tab: complete")
 
 def displayhook(value):
+    """Tim's custom display hook"""
     if value is not None:
         pprint.pprint(value)
 
 sys.displayhook = displayhook
+
+
+def md5(s):
+    return hashlib.md5(s).hexdigest()
+
+def sha256(s):
+    return hashlib.sha256(s).hexdigest()
