@@ -1,0 +1,5 @@
+syntax "ReST" "\.rst$"
+color blue "^\.\. .*:$"
+color brightgreen "`[^`]+?`|\*[^*]+?\*"
+color brightblue start="``" end="``"
+color ,green "[[:space:]]+$"
