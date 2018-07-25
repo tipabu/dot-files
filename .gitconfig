@@ -16,6 +16,7 @@
 
 [alias]
 	ll = log --pretty='format:%C(yellow)%h%Creset %s%C(green bold)%d%Creset %C(black bold)(by %an, %ar)%Creset'
+	lrc = log --left-right --pretty='format:%m %C(yellow)%h%Creset %s%C(green bold)%d%Creset %C(black bold)(by %an, %ar)%Creset'
 	lc = !sh -c 'git ll origin/HEAD..${1:HEAD}' -
 	lcr = !sh -c 'git ll ${1:HEAD}..origin/HEAD' -
 	lu = !sh -c 'git ll @{u}..${1:HEAD}' -
@@ -24,6 +25,7 @@
 	bv = branch --color -vvv
 	br = branch --contains origin~250 -a --no-merged origin
 	v = tag --points-at HEAD
+    rv = describe --abbrev=0 --tags
     st = status --short --branch
 
 [color]
