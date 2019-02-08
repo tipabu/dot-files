@@ -1,5 +1,5 @@
-syntax "conf" "\.ini$" "\.conf$" "\.conf-sample$" "\.conf-example$" ".gitconfig$"
+syntax "conf" "\.ini$" "\.conf$" "\.conf-sample$" "\.conf-example$" ".gitconfig$" ".cfg$"
 color green "^[^=]*="
-color cyan "(^|[[:space:]])#.*$"
+color cyan "(^|[[:space:]])[#;].*$"
 color brightred "^[[:space:]]*\[[^]]*\]"
 color ,green "[[:space:]]+$"
