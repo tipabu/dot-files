@@ -67,7 +67,8 @@ fi
 # Enable completion, if available
 #-------------------
 for f in /usr/local/etc/bash_completion \
-	/etc/bash_completion
+	/etc/bash_completion \
+	/etc/profile.d/bash_completion.sh
 do
 	test -f "$f" && {
 		. "$f"
