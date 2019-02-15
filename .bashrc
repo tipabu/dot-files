@@ -132,10 +132,17 @@ __svn_path() {
 	fi
 }
 __abbr_path() {
-	pwd | sed -e "s@^${HOME}@~@" | python -c "import sys
+	script="import sys
 l = sys.stdin.readline().split('/')
 a = l[0:3] + ['...'] + l[-2:]
-print('/'.join(l if len(l) <= len(a) else a))"
+print('/'.join(min(l, a, key=len)))"
+	if _cmd_avail python; then
+		pwd | sed -e "s@^${HOME}@~@" | python -c "$script"
+	elif _cmd_avail python3; then
+		pwd | sed -e "s@^${HOME}@~@" | python3 -c "$script"
+	else
+		pwd | sed -e "s@^${HOME}@~@"
+	fi
 }
 __err_code() {
 	[ "$1" -eq 0 ] || echo -n "\e[31m[$1] "
