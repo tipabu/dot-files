@@ -34,7 +34,6 @@ fi
 
 # Simplify listing hidden files & dirs
 alias l.="ls -pd .*"
-alias ls="ls -FG"
 
 if _cmd_avail 'netstat' && [ "$(uname -s)" != "Darwin" ]; then
 	if _cmd_avail 'watch'; then
