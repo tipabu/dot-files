@@ -1,8 +1,8 @@
 set tabsize 4
 set tabstospaces
 set fill 79
-set const
-set morespace
+set constantshow
+#set morespace
 
 include "~/.nano/c.nanorc"
 include "~/.nano/conf.nanorc"
